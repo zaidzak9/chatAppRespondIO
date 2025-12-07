@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { authService } from '../../api/authService';
@@ -7,7 +7,8 @@ import { useAppDispatch } from '../../store/hooks';
 import { addPost } from '../../store/postsSlice';
 
 export default function ChatScreen() {
-  const { userId, userName } = useLocalSearchParams();
+  const { userId, userName, userEmail, userPhone, userAvatar } = useLocalSearchParams();
+  const router = useRouter();
   const { posts, loading } = useGetUserPosts(Number(userId));
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -42,7 +43,21 @@ export default function ChatScreen() {
   if (loading) return <ActivityIndicator style={styles.loader} />;
 
   return (
-    <KeyboardAvoidingView 
+    <>
+      <Stack.Screen 
+        options={{ 
+          headerShown: true, 
+          title: userName as string, 
+          headerBackTitle: 'Back',
+          headerTitleStyle: { fontSize: 18 },
+          headerRight: () => (
+            <TouchableOpacity onPress={() => router.push(`/ui/screens/profileScreen?userName=${userName}&userEmail=${userEmail}&userPhone=${userPhone}&userAvatar=${userAvatar}`)}>
+              <Text style={{ color: '#007AFF', fontSize: 16 }}>Profile</Text>
+            </TouchableOpacity>
+          ),
+        }} 
+      />
+      <KeyboardAvoidingView 
       style={styles.container} 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 110 : 0}
@@ -78,7 +93,8 @@ export default function ChatScreen() {
           <Text style={styles.sendText}>{sending ? 'Sending...' : 'Send'}</Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </>
   );
 }
 

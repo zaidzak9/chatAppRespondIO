@@ -13,7 +13,7 @@ export default function Chats() {
       data={users}
       keyExtractor={item => item.id.toString()}
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => router.push(`/ui/screens/chatScreen?userId=${item.id}&userName=${item.name}`)}>
+        <TouchableOpacity style={styles.item} onPress={() => router.push(`/ui/screens/chatScreen?userId=${item.id}&userName=${item.name}&userEmail=${item.email}&userPhone=${item.phone}&userAvatar=${item.avatar}`)}>
           <Image source={{ uri: item.avatar }} style={styles.avatar} />
           <View style={styles.info}>
             <Text style={styles.email}>{item.name}</Text>

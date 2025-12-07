@@ -13,7 +13,8 @@ export default function AppLayout() {
       <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="ui/screens/chatScreen" options={{ headerShown: true, title: 'Chat', headerBackTitle: 'Back' }} />
+          <Stack.Screen name="ui/screens/chatScreen" />
+          <Stack.Screen name="ui/screens/profileScreen" options={{ headerShown: true, title: 'Profile', headerBackTitle: 'Back' }} />
         </Stack>
       </ThemeProvider>
     </Provider>
