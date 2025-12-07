@@ -1,7 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
-import { IconSymbol } from '@/components/ui/icon-symbol';
+import { IconSymbol } from '../components/ui/icon-symbol';
 
 export default function TabsNavigator() {
 
@@ -11,14 +10,14 @@ export default function TabsNavigator() {
         name="chats"
         options={{
           title: 'Chats',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="menucard.fill" color={color} />,
         }}
       />
     </Tabs>
