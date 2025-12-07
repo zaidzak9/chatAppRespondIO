@@ -1,8 +1,10 @@
-import { ActivityIndicator, FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import { useLoadUsers } from '../../../hooks/useLoadUsers';
+import { useRouter } from 'expo-router';
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useLoadUsers } from '../../hooks/useLoadUsers';
 
 export default function Chats() {
   const { users, loading, loadingMore, loadMore } = useLoadUsers();
+  const router = useRouter();
 
   if (loading) return <ActivityIndicator style={styles.loader} />;
 
@@ -11,13 +13,13 @@ export default function Chats() {
       data={users}
       keyExtractor={item => item.id.toString()}
       renderItem={({ item }) => (
-        <View style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={() => router.push(`/ui/screens/chatScreen?userId=${item.id}&userName=${item.name}`)}>
           <Image source={{ uri: item.avatar }} style={styles.avatar} />
           <View style={styles.info}>
             <Text style={styles.email}>{item.name}</Text>
             <Text style={styles.email}>{item.email}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       )}
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}

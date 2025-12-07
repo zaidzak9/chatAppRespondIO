@@ -5,4 +5,8 @@ export const authService = {
     const response = await fetch(`${BASE_URL}/users?limit=${limit}&offset=${offset}`);
     return response.json();
   },
+  getUserPosts: async (userId: number) => {
+    const response = await fetch(`${BASE_URL}/posts?userId=${userId}`);
+    return response.json();
+  },
 };
