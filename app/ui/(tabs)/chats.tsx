@@ -1,6 +1,6 @@
+import { authService } from '@/app/api/authService';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import { authService } from '../api/authService';
 
 type User = {
   id: number;
@@ -34,7 +34,7 @@ export default function Chats() {
         <View style={styles.item}>
           <Image source={{ uri: item.avatar }} style={styles.avatar} />
           <View style={styles.info}>
-            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.email}>{item.name}</Text>
             <Text style={styles.email}>{item.email}</Text>
           </View>
         </View>
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
   item: { flexDirection: 'row', padding: 16, borderBottomWidth: 1, borderBottomColor: '#eee' },
   avatar: { width: 50, height: 50, borderRadius: 25 },
   info: { marginLeft: 12, justifyContent: 'center' },
-  name: { fontSize: 16, fontWeight: '600' },
+  name: { fontSize: 16, color: '#666',fontWeight: '600' },
   email: { fontSize: 14, color: '#666', marginTop: 4 },
 });

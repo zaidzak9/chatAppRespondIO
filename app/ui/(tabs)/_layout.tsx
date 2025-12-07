@@ -1,6 +1,6 @@
+import { IconSymbol } from '@/app/components/ui/icon-symbol';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { IconSymbol } from '../components/ui/icon-symbol';
 
 export default function TabsNavigator() {
 
