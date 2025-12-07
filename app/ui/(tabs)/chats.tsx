@@ -1,28 +1,8 @@
-import { authService } from '@/app/api/authService';
-import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, StyleSheet, Text, View } from 'react-native';
-
-type User = {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  avatar: string;
-  phone: string;
-};
+import { useLoadUsers } from '../../../hooks/useLoadUsers';
 
 export default function Chats() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    authService.getUsers()
-      .then(data => {
-        setUsers(data.results);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  const { users, loading, loadingMore, loadMore } = useLoadUsers();
 
   if (loading) return <ActivityIndicator style={styles.loader} />;
 
@@ -39,6 +19,9 @@ export default function Chats() {
           </View>
         </View>
       )}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} /> : null}
     />
   );
 }
@@ -50,4 +33,5 @@ const styles = StyleSheet.create({
   info: { marginLeft: 12, justifyContent: 'center' },
   name: { fontSize: 16, color: '#666',fontWeight: '600' },
   email: { fontSize: 14, color: '#666', marginTop: 4 },
+  footer: { padding: 16 },
 });
