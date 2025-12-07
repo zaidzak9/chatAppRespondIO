@@ -1,4 +1,5 @@
-import { IconSymbol } from '@/app/components/ui/icon-symbol';
+
+import { IconSymbol } from '@/app/components/icon-symbol';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
