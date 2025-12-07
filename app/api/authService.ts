@@ -9,4 +9,12 @@ export const authService = {
     const response = await fetch(`${BASE_URL}/posts?userId=${userId}`);
     return response.json();
   },
+  createPost: async (userId: number, title: string, body: string) => {
+    const response = await fetch(`${BASE_URL}/posts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, title, body })
+    });
+    return response.json();
+  },
 };

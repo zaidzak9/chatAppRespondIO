@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react';
 import { authService } from '../api/authService';
-
-interface Post {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-  category: string;
-  createdAt: string;
-  tags: string[];
-}
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { setPosts } from '../store/postsSlice';
 
 export function useGetUserPosts(userId: number) {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector(state => state.posts[userId]);
+  const [loading, setLoading] = useState(!posts);
 
   useEffect(() => {
-    authService.getUserPosts(userId)
-      .then(data => setPosts(data.results))
-      .finally(() => setLoading(false));
-  }, [userId]);
+    if (!posts) {
+      authService.getUserPosts(userId)
+        .then(data => {
+          dispatch(setPosts({ userId, posts: data.results }));
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [userId, posts, dispatch]);
 
-  return { posts, loading };
+  return { posts: posts || [], loading };
 }
