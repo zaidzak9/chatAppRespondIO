@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../store/hooks';
 import { addPost } from '../../store/postsSlice';
 
 export default function ChatScreen() {
-  const { userId, userName, userEmail, userPhone, userAvatar } = useLocalSearchParams();
+  const { userId, userName} = useLocalSearchParams();
   const router = useRouter();
   const { posts, loading } = useGetUserPosts(Number(userId));
   const [title, setTitle] = useState('');
@@ -46,17 +46,18 @@ export default function ChatScreen() {
   return (
     <>
       <Stack.Screen 
-        options={{ 
-          headerShown: true, 
-          title: userName as string, 
+        options={{
+          headerShown: true,
+          title: userName as string,
           headerBackTitle: 'Back',
           headerTitleStyle: { fontSize: 18 },
+          animation: 'none' as const,
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push(`/ui/screens/profileScreen?userId=${userId}&userName=${userName}&userEmail=${userEmail}&userPhone=${userPhone}&userAvatar=${userAvatar}`)}>
+            <TouchableOpacity onPress={() => router.push(`/ui/screens/profileScreen?userId=${userId}`)}>
               <Text style={{ color: '#007AFF', fontSize: 16 }}>Profile</Text>
             </TouchableOpacity>
           ),
-        }} 
+        }}
       />
       <KeyboardAvoidingView 
       style={commonStyles.container} 

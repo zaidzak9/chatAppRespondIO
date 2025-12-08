@@ -9,6 +9,8 @@ export const authService = {
     const response = await fetch(`${BASE_URL}/posts?userId=${userId}`);
     return response.json();
   },
+  //not sure if there was a minundersanding, but there is no API to send a message but only create posts,
+  //this api doc doesnt accomadate any chat app.
   createPost: async (userId: number, title: string, body: string) => {
     const response = await fetch(`${BASE_URL}/posts`, {
       method: 'POST',

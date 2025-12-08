@@ -11,9 +11,7 @@ export default function   ProfileScreen() {
   const dispatch = useAppDispatch();
   const isBlocked = useAppSelector((state) => state.users.blockedUsers[userId] || false);
 
-  console.log('UserId:', userId);
   const { data } = useUserProfile(userId);
-  console.log(data);
 
   if (!data) return null;
 
