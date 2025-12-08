@@ -4,19 +4,24 @@ import { useColorScheme } from 'react-native';
 import 'react-native-reanimated';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export default function AppLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Provider store={store}>
-      <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="ui/screens/chatScreen" />
-          <Stack.Screen name="ui/screens/profileScreen" options={{ headerShown: true, title: 'Profile', headerBackTitle: 'Back' }} />
-        </Stack>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DefaultTheme}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="ui/screens/chatScreen" />
+            <Stack.Screen name="ui/screens/profileScreen" options={{ headerShown: true, title: 'Profile', headerBackTitle: 'Back' }} />
+          </Stack>
+        </ThemeProvider>
+      </QueryClientProvider>
     </Provider>
   );
 }

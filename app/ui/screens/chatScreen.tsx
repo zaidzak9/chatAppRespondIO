@@ -52,7 +52,7 @@ export default function ChatScreen() {
           headerBackTitle: 'Back',
           headerTitleStyle: { fontSize: 18 },
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push(`/ui/screens/profileScreen?userName=${userName}&userEmail=${userEmail}&userPhone=${userPhone}&userAvatar=${userAvatar}`)}>
+            <TouchableOpacity onPress={() => router.push(`/ui/screens/profileScreen?userId=${userId}&userName=${userName}&userEmail=${userEmail}&userPhone=${userPhone}&userAvatar=${userAvatar}`)}>
               <Text style={{ color: '#007AFF', fontSize: 16 }}>Profile</Text>
             </TouchableOpacity>
           ),

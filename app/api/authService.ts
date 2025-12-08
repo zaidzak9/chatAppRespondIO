@@ -17,4 +17,8 @@ export const authService = {
     });
     return response.json();
   },
+  getUserProfile: async (userId: string) => {
+    const response = await fetch(`${BASE_URL}/users/${userId}`);
+    return response.json();
+  },
 };
