@@ -1,4 +1,5 @@
-import { commonStyles } from '@/app/components/styles/commonStyles';
+import { useCommonStyles } from '@/app/components/styles/commonStyles';
+import { LoadingSpinner } from '@/app/components/LoadingSpinner';
 import { useRouter } from 'expo-router';
 import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLoadUsers } from '../../hooks/useLoadUsers';
@@ -6,15 +7,16 @@ import { useLoadUsers } from '../../hooks/useLoadUsers';
 export default function Chats() {
   const { users, loading, loadingMore, loadMore } = useLoadUsers();
   const router = useRouter();
+  const commonStyles = useCommonStyles();
 
-  if (loading) return <ActivityIndicator style={commonStyles.loader} />;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <FlatList
       data={users}
       keyExtractor={item => item.id.toString()}
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => router.push(`/ui/screens/chatScreen?userId=${item.id}&userName=${item.name}&userEmail=${item.email}&userPhone=${item.phone}&userAvatar=${item.avatar}`)}>
+        <TouchableOpacity style={styles.item} onPress={() => router.push(`/ui/screens/chatScreen?userId=${item.id}&userName=${item.name}`)}>
           <Image source={{ uri: item.avatar }} style={commonStyles.avatar} />
           <View style={styles.info}>
             <Text style={[commonStyles.body, styles.name]}>{item.name}</Text>

@@ -1,4 +1,4 @@
-import { commonStyles } from '@/app/components/styles/commonStyles';
+import { useCommonStyles } from '@/app/components/styles/commonStyles';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -14,6 +14,7 @@ export default function ChatScreen() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [sending, setSending] = useState(false);
+  const commonStyles = useCommonStyles();
 
   const dispatch = useAppDispatch();
 

@@ -1,4 +1,4 @@
-import { commonStyles } from '@/app/components/styles/commonStyles';
+import { useCommonStyles } from '@/app/components/styles/commonStyles';
 import { useUserProfile } from '@/app/hooks/useUserProfile';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { toggleBlockUser } from '@/app/store/usersSlice';
@@ -10,6 +10,7 @@ export default function   ProfileScreen() {
   const userId = params.userId as string;
   const dispatch = useAppDispatch();
   const isBlocked = useAppSelector((state) => state.users.blockedUsers[userId] || false);
+  const commonStyles = useCommonStyles();
 
   const { data } = useUserProfile(userId);
 
