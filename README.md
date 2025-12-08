@@ -13,6 +13,9 @@ App Screenshots
 <img width="200" height="500" alt="IMG_0304" src="https://github.com/user-attachments/assets/ac274f55-a340-4392-8219-22f82db6f2d0" />
 <img width="200" height="500" alt="IMG_0305" src="https://github.com/user-attachments/assets/1a5dea35-cf73-4af4-9598-13ab88128aa3" />
 
+Concerns:
+<br/><br/>
+In the Google doc on project requirements, it was mentioned to implement a chat app, and one the of the api issued would provide messages. but instead it provides only articles the user has published, im not sure if there is an misunderstanding. either way i tried to fullfil the requirements even if API is not accurate for requirements.
 
 This App is Project for Respond.IO
 
